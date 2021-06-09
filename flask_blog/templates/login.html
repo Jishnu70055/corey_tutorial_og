@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block content %}
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form method = "POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Log In </legend>
+
+                <div>
+                    {{ form.email.label }}
+
+                    {% if form.email.errors %}
+                        <div>
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email}}
+                    {% endif %}
+                    
+                </div>
+                <div>
+                    {{ form.password.label }}
+                    
+                    {% if form.password.errors %}
+                        <div>
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password}}
+                    {% endif %}
+                    
+                </div>
+                <div>
+                    {{ form.remember}}
+                    {{ form.remember.label }}
+                </div>
+                <div>
+                    {{ form.submit}}
+                </div>
+                <small>
+                    <a href="{{ url_for('users.reset_request') }}">Forgot Passwordd</a>
+                </small>
+
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <small>
+            Dont Have An Account? <a href="{{ url_for('users.register') }}">Click Here</a>
+        </small>
+    </div>
+    
+</body>
+{% endblock %}
+
+</html>
